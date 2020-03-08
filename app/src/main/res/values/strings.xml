@@ -16,11 +16,11 @@
     <string name="rb1">Masculino</string>
     <string name="rb2">Femenino</string>
     <string name="rb3">Otro</string>
-    <string name="btn1">Crear</string>
-    <string name="btn2">Leer</string>
+    <string name="btn1">Registrar</string>
+    <string name="btn2">Buscar</string>
     <string name="btn3">Modificar</string>
     <string name="btn4">Eliminar</string>
     <string name="btn5">Ver todo el Personal</string>
-
+    <string name="btn6">Limpiar Campos</string>
 
 </resources>
