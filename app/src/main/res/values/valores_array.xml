@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="valores_array">
+        <item>Cédula Ciudadania</item>
+        <item>Cédula de extranjería</item>
+        <item>Pasaporte</item>
+        <item>Tarjeta de identidad</item>
+    </string-array>
+</resources>

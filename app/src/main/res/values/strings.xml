@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">DATOS PERSONAL</string>
+    <string name="tv1">DATOS PERSONAL</string>
+    <string name="tv2">Número de Identificación</string>
+    <string name="et1">Identification</string>
+    <string name="tv3">Tipo de Identificación</string>
+    <string name="tv4">Nombre</string>
+    <string name="et2">Name</string>
+    <string name="tv5">Apellido</string>
+    <string name="et3">Lastname</string>
+    <string name="tv6">Correo</string>
+    <string name="et4">Email</string>
+    <string name="tv7">Teléfono</string>
+    <string name="et5">Phone</string>
+    <string name="tv8">Genero</string>
+    <string name="rb1">Masculino</string>
+    <string name="rb2">Femenino</string>
+    <string name="rb3">Otro</string>
+    <string name="btn1">Crear</string>
+    <string name="btn2">Leer</string>
+    <string name="btn3">Modificar</string>
+    <string name="btn4">Eliminar</string>
+    <string name="btn5">Ver todo el Personal</string>
+
+
+</resources>
