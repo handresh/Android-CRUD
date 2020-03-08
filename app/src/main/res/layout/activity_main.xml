@@ -174,9 +174,10 @@
         android:layout_marginBottom="6dp"
         android:ems="10"
         android:hint="@string/et4"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editText5"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/et5"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/tv6"
         app:layout_constraintTop_toBottomOf="@+id/et3" />
 
@@ -190,12 +191,12 @@
         android:layout_marginBottom="400dp"
         android:text="@string/tv7"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editText5"
+        app:layout_constraintEnd_toStartOf="@+id/et5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv6" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/et5"
         android:layout_width="268dp"
         android:layout_height="41dp"
         android:layout_marginTop="6dp"
@@ -203,7 +204,7 @@
         android:layout_marginBottom="393dp"
         android:ems="10"
         android:hint="@string/et5"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv7"
@@ -234,7 +235,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv8"
-        app:layout_constraintTop_toBottomOf="@+id/editText5">
+        app:layout_constraintTop_toBottomOf="@+id/et5">
 
         <RadioButton
             android:id="@+id/rb1"
@@ -263,6 +264,7 @@
         android:layout_marginTop="21dp"
         android:layout_marginEnd="14dp"
         android:layout_marginBottom="18dp"
+        android:onClick="crear"
         android:text="@string/btn1"
         app:layout_constraintBottom_toTopOf="@+id/btn3"
         app:layout_constraintEnd_toStartOf="@+id/btn2"
