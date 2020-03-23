@@ -3,6 +3,7 @@ package com.example.crudandroid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -136,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
             registro.put("correo", correo);
             registro.put("telefono", telefono);
             registro.put("genero", genero);
+            limpiarCampos(view);
             int cant = BaseDeDatos.update("persona", registro, "numIdent=" + numIdentificacion, null);
             if (cant == 1){
                 Toast.makeText(this, "Se modificaron los datos", Toast.LENGTH_SHORT).show();
@@ -157,6 +159,12 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "No existe el numero de identificación", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void mostrarTodosLosDatos(View view){
+        Intent mostarDatos = new Intent(this, Main2Activity.class);
+        startActivity(mostarDatos);
+    }
+
 
     public void limpiarCampos(View view){
         et1.setText("");
