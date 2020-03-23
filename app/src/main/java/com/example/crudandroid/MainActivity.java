@@ -115,6 +115,49 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void modificacion(View view){
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "personal", null, 1 );
+        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
+
+        String numIdentificacion    = et1.getText().toString();
+        String tipoIdentificacion   = opcionDocumento;
+        String nombre               = et2.getText().toString();
+        String apellido             = et3.getText().toString();
+        String correo               = et4.getText().toString();
+        String telefono             = et5.getText().toString();
+        String genero               = generoSeleccionado(view);
+        if (!numIdentificacion.isEmpty() && !tipoIdentificacion.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty() &&
+                !correo.isEmpty() && !telefono.isEmpty() && !genero.isEmpty() ){
+            ContentValues registro = new ContentValues();
+            registro.put("numIdent", numIdentificacion);
+            registro.put("tipoIdent", tipoIdentificacion);
+            registro.put("nombre", nombre);
+            registro.put("apellido", apellido);
+            registro.put("correo", correo);
+            registro.put("telefono", telefono);
+            registro.put("genero", genero);
+            int cant = BaseDeDatos.update("persona", registro, "numIdent=" + numIdentificacion, null);
+            if (cant == 1){
+                Toast.makeText(this, "Se modificaron los datos", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this, "No existe el numero de identificación", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void eliminar(View view){
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "personal", null, 1 );
+        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
+        String numIdentificacion    = et1.getText().toString();
+        limpiarCampos(view);
+        int cant = BaseDeDatos.delete("persona", "numIdent=" + numIdentificacion, null);
+        if (cant == 1){
+            Toast.makeText(this, "Se elimino exitosamente", Toast.LENGTH_SHORT).show();
+        } else{
+            Toast.makeText(this, "No existe el numero de identificación", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public void limpiarCampos(View view){
         et1.setText("");
         cmb1.setSelection(0);

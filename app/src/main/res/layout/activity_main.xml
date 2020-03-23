@@ -18,7 +18,7 @@
         android:text="@string/tv1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.575"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -41,7 +41,7 @@
         android:id="@+id/et1"
         android:layout_width="198dp"
         android:layout_height="43dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="631dp"
         android:ems="10"
@@ -50,8 +50,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv2"
-        app:layout_constraintTop_toBottomOf="@+id/txt1"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/txt1" />
 
     <TextView
         android:id="@+id/tv3"
@@ -73,14 +72,15 @@
         android:layout_width="206dp"
         android:layout_height="25dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="584dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/tv3"
-        app:layout_constraintTop_toBottomOf="@+id/et1" />
+        app:layout_constraintTop_toBottomOf="@+id/txt1"
+        app:layout_constraintVertical_bias="0.801" />
 
     <TextView
         android:id="@+id/tv4"
@@ -103,7 +103,6 @@
         android:layout_width="268dp"
         android:layout_height="41dp"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="25dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="536dp"
         android:ems="10"
@@ -112,9 +111,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/tv4"
-        app:layout_constraintTop_toBottomOf="@+id/cmb1"
-        app:layout_constraintVertical_bias="0.555" />
+        app:layout_constraintStart_toEndOf="@+id/tv4" />
 
     <TextView
         android:id="@+id/tv5"
@@ -292,6 +289,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="112dp"
         android:layout_marginBottom="140dp"
+        android:onClick="modificacion"
         android:text="@string/btn3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn4"
@@ -305,6 +303,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="103dp"
         android:layout_marginBottom="140dp"
+        android:onClick="eliminar"
         android:text="@string/btn4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
