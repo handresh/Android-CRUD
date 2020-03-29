@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     String opcionDocumento;
+    // Creación de los objetos
     private Spinner cmb1;
     private EditText et1, et2, et3, et4, et5;
     private RadioButton rb1, rb2, rb3;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Comunicación entreo los elementos lógicos con los elementos gráficos
         et1 = findViewById(R.id.et1);
         et2 = findViewById(R.id.et2);
         et3 = findViewById(R.id.et3);
@@ -41,15 +43,17 @@ public class MainActivity extends AppCompatActivity {
         rb2 = findViewById(R.id.rb2);
         rb3 = findViewById(R.id.rb3);
         cmb1 = findViewById(R.id.cmb1);
-        listaDespleglabe();
+        listaDespleglabe(); // Llama la función para mostrar los datos en el spinner
     }
 
 
-
+    // Método para crear un registro en la base de datos, realiza la conexión con la base de datos.
+    // Verifica que todos los campos estén llenos para poder guardar los registros, confirmándolo con un Toast.
     public void crear(View view){
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "personal", null, 1);
-        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
+        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase(); //Abre la base de datos en modo de lectura y escritura.
 
+        //Se convierten los datos string y se recupera el dato del objeto gráfico
         String numIdentificacion    = et1.getText().toString();
         String tipoIdentificacion   = opcionDocumento;
         String nombre               = et2.getText().toString();
@@ -57,9 +61,15 @@ public class MainActivity extends AppCompatActivity {
         String correo               = et4.getText().toString();
         String telefono             = et5.getText().toString();
         String genero               = generoSeleccionado(view);
+
+        //Se verifica si las variables son diferentes de vacío
         if (!numIdentificacion.isEmpty() && !tipoIdentificacion.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty() &&
                 !correo.isEmpty() && !telefono.isEmpty() && !genero.isEmpty() ){
+
+            //La clase ContentValues se utiliza para para retener los valores de un solo registro, que será el que se insertará en la BD.
             ContentValues registro = new ContentValues();
+
+            //Se colocan los valores que se leen de la parte gráfica en el registro
             registro.put("numIdent", numIdentificacion);
             registro.put("tipoIdent", tipoIdentificacion);
             registro.put("nombre", nombre);
@@ -76,14 +86,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Método para buscar un registro en la base de datos verifica que el campo de número de identificación no este vació y busca en la base de datos,
+    // si el número de identificación se encuentra en la base de datos muestra los datos de la persona en los campos.
     public void buscar(View view){
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "personal", null, 1);
-        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
+        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();  //Abre la base de datos en modo de lectura y escritura.
 
         String numIdentificacion = et1.getText().toString();
+        //Se verifica si las variables son diferentes de vacío
         if (!numIdentificacion.isEmpty()){
-            Cursor fila = BaseDeDatos.rawQuery("select tipoIdent, nombre, apellido, correo, telefono, genero from persona where numIdent ="
-            + numIdentificacion, null );
+            Cursor fila = BaseDeDatos.rawQuery("select tipoIdent, nombre, apellido, correo, telefono, genero " +
+                    "from persona where numIdent = " + numIdentificacion, null );
+            //Se obtiene los datos de la base de datos
             if (fila.moveToFirst()){
                 for(int i = 0; i < cmb1.getCount() ; i++) {
                     System.out.println(cmb1.getItemAtPosition(i).toString());
@@ -93,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                 }
+
+                //Se muestran en la aplicación, los datos encontrados en la base de dados
                 et2.setText(fila.getString(1));
                 et3.setText(fila.getString(2));
                 et4.setText(fila.getString(3));
@@ -116,10 +132,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Método para modificar un registro en la base de datos verifica que ningún campo este vacío y
+    // busca en la base de datos el número de identificación si existe modifica los datos de la base de datos con los datos ingresados en la aplicación.
     public void modificacion(View view){
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "personal", null, 1 );
-        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
+        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();  //Abre la base de datos en modo de lectura y escritura.
 
+        //Se convierten los datos string y se recupera el dato del objeto gráfico
         String numIdentificacion    = et1.getText().toString();
         String tipoIdentificacion   = opcionDocumento;
         String nombre               = et2.getText().toString();
@@ -127,9 +146,15 @@ public class MainActivity extends AppCompatActivity {
         String correo               = et4.getText().toString();
         String telefono             = et5.getText().toString();
         String genero               = generoSeleccionado(view);
+
+        //Se verifica si las variables son diferentes de vacío
         if (!numIdentificacion.isEmpty() && !tipoIdentificacion.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty() &&
                 !correo.isEmpty() && !telefono.isEmpty() && !genero.isEmpty() ){
+
+            //La clase ContentValues se utiliza para para retener los valores de un solo registro, que será el que se insertará en la BD.
             ContentValues registro = new ContentValues();
+
+            //Se colocan los valores que se leen de la parte gráfica en el registro
             registro.put("numIdent", numIdentificacion);
             registro.put("tipoIdent", tipoIdentificacion);
             registro.put("nombre", nombre);
@@ -147,9 +172,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Método para eliminar un registro en la base de datos verifica que el campo de número de identificación no este vació y busca en la base de datos,
+    //si el número de identificación se encuentra en la base de datos elimina el registro de la base de datos.
     public void eliminar(View view){
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "personal", null, 1 );
-        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
+        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();  //Abre la base de datos en modo de lectura y escritura.
         String numIdentificacion    = et1.getText().toString();
         limpiarCampos(view);
         int cant = BaseDeDatos.delete("persona", "numIdent=" + numIdentificacion, null);
@@ -160,12 +187,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Método que mediante la función OnClick lanza el otro activiy que muestra todos los datos que se encuentran en la base de datos.
     public void mostrarTodosLosDatos(View view){
         Intent mostarDatos = new Intent(this, Main2Activity.class);
         startActivity(mostarDatos);
     }
 
-
+    //Método que borra todos los datos escritos en los campos de la aplicación.
     public void limpiarCampos(View view){
         et1.setText("");
         cmb1.setSelection(0);
@@ -176,11 +204,12 @@ public class MainActivity extends AppCompatActivity {
         rg1.clearCheck();
     }
 
-
+    //Método que permite mostrar los datos obtenidos del archivo valores_array.xml en una lista desplegable (Spinner).
     public void listaDespleglabe(){
         final String[] datos = new String[]{"Elem1","Elem2","Elem3","Elem4"};
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.valores_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Se muestra los datos del adaptador en el spinner
         cmb1.setAdapter(adapter);
         cmb1.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
@@ -194,7 +223,8 @@ public class MainActivity extends AppCompatActivity {
         cmb1.setSelection(0);
     }
 
-
+    //Método que verifica que radiobutton fue seleccionado y según la selección le asigna un valor en este caso es el genero.
+    // Retorna un String
     public String generoSeleccionado (View view){
         String rbSeleccionado = "";
         if(rb1.isChecked() == true){

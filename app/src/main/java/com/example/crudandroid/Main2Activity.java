@@ -26,11 +26,12 @@ public class Main2Activity extends AppCompatActivity {
         lv.setAdapter(adaptador);
     }
 
-
+    //Método que permite mostrar todos los datos que se encuentra en la base de datos en un ListView en la activity,
+    // esto lo realiza mediante una consulta a la base de datos.
     public ArrayList llenar_lv(){
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "personal", null, 1 );
         ArrayList<String> lista = new ArrayList<>();
-        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
+        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();  //Abre la base de datos en modo de lectura y escritura.
         Cursor fila = BaseDeDatos.rawQuery("select * from persona", null);
         if (fila.moveToFirst()){
             do{
